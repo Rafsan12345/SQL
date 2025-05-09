@@ -1,0 +1,2 @@
+SELECT *FROM Customers WHERE age=31 AND country="USA";
+--SELECT *FROM Customers WHERE age=28;
