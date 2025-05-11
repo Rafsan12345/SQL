@@ -144,6 +144,10 @@ https://www.w3schools.com/sql/sql_ref_sqlserver.asp
 ব্যাখ্যা: একাধিক শর্তে ডেটা ফিল্টার করা।
 
 SELECT * FROM students WHERE age > 18 AND status = 'active';
+
+
+
+
 #19 WILD CARDS
 ব্যাখ্যা: %, _ ব্যবহার করে আংশিক খোঁজ করা।
 
