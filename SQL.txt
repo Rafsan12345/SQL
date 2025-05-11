@@ -152,11 +152,14 @@ SELECT * FROM students WHERE age > 18 AND status = 'active';
 ব্যাখ্যা: %, _ ব্যবহার করে আংশিক খোঁজ করা।
 
 SELECT * FROM students WHERE name LIKE 'R%';
+SELECT * FROM students WHERE name LIKE '%R';
+SELECT * FROM students WHERE name LIKE '_R%';
 
+SELECT * FROM students WHERE dob LIKE '____-01-01';
 
 #20 ORDER BY
 ব্যাখ্যা: রেজাল্ট সাজিয়ে দেখানো।
-
+ASC --> Default
 SELECT * FROM students ORDER BY age DESC;
 
 
