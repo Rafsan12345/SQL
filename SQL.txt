@@ -123,6 +123,7 @@ JOIN classes ON students.id = classes.student_id;
 ব্যাখ্যা: গাণিতিক বা টেক্সট ফাংশন যেমন COUNT(), MAX()।
 
 SELECT COUNT(*) FROM students;
+SELECT COUNT(*) FROM Customers WHERE age>30;
 
 
 #18 AND, OR, NOT
