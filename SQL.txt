@@ -1,2 +1,229 @@
 SELECT *FROM Customers WHERE age=31 AND country="USA";
 --SELECT *FROM Customers WHERE age=28;
+##################################################################################
+
+#3 DATABASES
+ব্যাখ্যা: নতুন ডেটাবেইস তৈরি করা ও ব্যবহারের নিয়ম।
+
+
+CREATE DATABASE school;
+USE school;
+
+#4 TABLES
+ব্যাখ্যা: ডেটাবেইসের ভিতরে টেবিল তৈরি হয় যাতে ডেটা থাকে।
+
+CREATE TABLE students (
+  id INT,
+  name VARCHAR(50),
+  age INT
+);
+
+
+#5 INSERT ROWS
+ব্যাখ্যা: টেবিলে নতুন ডেটা যুক্ত করা হয়।
+
+INSERT INTO students (id, name, age) VALUES (1, 'Rahim', 20);
+
+
+#6 SELECT
+ব্যাখ্যা: টেবিল থেকে ডেটা দেখা হয়।
+
+SELECT * FROM students;
+
+#7 UPDATE & DELETE
+ব্যাখ্যা:
+
+UPDATE: ডেটা পরিবর্তন করা হয়।
+
+DELETE: ডেটা মুছে ফেলা হয়।
+
+
+UPDATE students SET age = 21 WHERE id = 1;
+DELETE FROM students WHERE id = 1;
+
+
+#8 AUTOCOMMIT, COMMIT, ROLLBACK
+ব্যাখ্যা: ডেটা পরিবর্তনের সময় সুরক্ষা পদ্ধতি।
+
+START TRANSACTION;
+UPDATE students SET name='Karim' WHERE id=2;
+ROLLBACK; -- পরিবর্তন বাতিল
+COMMIT; -- স্থায়ীভাবে সংরক্ষণ
+
+
+#9 UNIQUE
+ব্যাখ্যা: কোন কলামের মান যেন কখনো ডুপ্লিকেট না হয়।
+
+CREATE TABLE users (
+  email VARCHAR(100) UNIQUE
+);
+
+
+#10 NOT NULL
+ব্যাখ্যা: কোন কলাম খালি রাখা যাবে না।
+
+CREATE TABLE users (
+  username VARCHAR(50) NOT NULL
+);
+
+
+#11 CHECK
+ব্যাখ্যা: কোন শর্ত পূরণ না করলে ডেটা ইনসার্ট হবে না।
+
+CREATE TABLE students (
+  age INT CHECK (age >= 18)
+);
+
+
+#12 DEFAULT
+ব্যাখ্যা: কোন মান না দিলে ডিফল্ট মান সেট করে।
+
+CREATE TABLE students (
+  status VARCHAR(20) DEFAULT 'active'
+);
+
+
+#13 PRIMARY KEYS
+ব্যাখ্যা: একটি ইউনিক এবং NOT NULL কলাম যা প্রতিটি রোকে চিহ্নিত করে।
+
+CREATE TABLE students (
+  id INT PRIMARY KEY,
+  name VARCHAR(50)
+);
+
+
+#14 AUTO_INCREMENT
+ব্যাখ্যা: প্রতিবার নতুন রো ইনসার্ট হলে সংখ্যা বাড়ে।
+
+
+CREATE TABLE students (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50)
+);
+
+
+#15 FOREIGN KEYS
+ব্যাখ্যা: এক টেবিলের কলাম অন্য টেবিলের PRIMARY KEY কে রেফার করে।
+
+CREATE TABLE classes (
+  student_id INT,
+  FOREIGN KEY (student_id) REFERENCES students(id)
+);
+
+
+#16 JOINS
+ব্যাখ্যা: একাধিক টেবিলের তথ্য একত্রে দেখানো।
+
+SELECT students.name, classes.class_name
+FROM students
+JOIN classes ON students.id = classes.student_id;
+
+
+#17 FUNCTIONS
+ব্যাখ্যা: গাণিতিক বা টেক্সট ফাংশন যেমন COUNT(), MAX()।
+
+SELECT COUNT(*) FROM students;
+
+
+#18 AND, OR, NOT
+ব্যাখ্যা: একাধিক শর্তে ডেটা ফিল্টার করা।
+
+SELECT * FROM students WHERE age > 18 AND status = 'active';
+#19 WILD CARDS
+ব্যাখ্যা: %, _ ব্যবহার করে আংশিক খোঁজ করা।
+
+SELECT * FROM students WHERE name LIKE 'R%';
+
+
+#20 ORDER BY
+ব্যাখ্যা: রেজাল্ট সাজিয়ে দেখানো।
+
+SELECT * FROM students ORDER BY age DESC;
+
+
+#21 LIMIT
+ব্যাখ্যা: কতটি রো দেখাবে তা নির্ধারণ করা।
+
+
+SELECT * FROM students LIMIT 5;
+
+
+#22 UNIONS
+ব্যাখ্যা: একাধিক SELECT রেজাল্ট একত্র করা।
+SELECT name FROM students
+UNION
+SELECT name FROM teachers;
+
+
+#23 SELF JOINS
+ব্যাখ্যা: একই টেবিলের সাথে নিজেই JOIN করা।
+
+SELECT A.name, B.name
+FROM employees A, employees B
+WHERE A.manager_id = B.id;
+
+
+#24 VIEWS
+ব্যাখ্যা: এক বা একাধিক টেবিলের উপর ভিত্তি করে ভার্চুয়াল টেবিল।
+
+CREATE VIEW student_view AS
+SELECT name, age FROM students;
+
+
+
+#25 INDEXES
+ব্যাখ্যা: দ্রুত খোঁজার জন্য ব্যবহার হয়।
+
+CREATE INDEX idx_name ON students(name);
+
+
+
+#26 SUBQUERIES
+ব্যাখ্যা: একটি কোয়েরির ভিতরে আরেকটি কোয়েরি।
+
+SELECT name FROM students
+WHERE age > (SELECT AVG(age) FROM students);
+
+
+
+
+#27 GROUP BY
+ব্যাখ্যা: একই টাইপের ডেটা একত্রে গঠন করে ফাংশন প্রয়োগ।
+
+SELECT age, COUNT(*) FROM students GROUP BY age;
+
+
+
+#28 ROLLUP
+ব্যাখ্যা: GROUP BY এর সাথে যোগফল সহ গ্রুপ তৈরি।
+
+SELECT age, COUNT(*) FROM students GROUP BY age WITH ROLLUP;
+
+
+
+
+#29 ON DELETE
+ব্যাখ্যা: Parent টেবিল থেকে রো মুছে গেলে Child টেবিলে কী হবে।
+
+FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE;
+
+
+#30 STORED PROCEDURES
+ব্যাখ্যা: SQL কোড ব্লক সংরক্ষণ করা যাতে বারবার ব্যবহার করা যায়।
+
+DELIMITER //
+CREATE PROCEDURE GetAllStudents()
+BEGIN
+  SELECT * FROM students;
+END;
+//
+
+
+
+#31 TRIGGERS
+ব্যাখ্যা: নির্দিষ্ট ঘটনা ঘটলে স্বয়ংক্রিয়ভাবে কোড চালানো।
+
+CREATE TRIGGER before_insert_student
+BEFORE INSERT ON students
+FOR EACH ROW
+SET NEW.status = 'active';
