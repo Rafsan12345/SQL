@@ -125,6 +125,20 @@ JOIN classes ON students.id = classes.student_id;
 SELECT COUNT(*) FROM students;
 SELECT COUNT(*) FROM Customers WHERE age>30;
 
+SELECT COUNT(*) AS abc FROM Customers; --WHERE age>30;
+
+SELECT MAX(age) FROM Customers; 
+SELECT MIN(age) FROM Customers; 
+SELECT AVG(age) FROM Customers; 
+
+
+function list link 
+https://www.w3schools.com/sql/sql_ref_sqlserver.asp
+
+
+
+
+
 
 #18 AND, OR, NOT
 ব্যাখ্যা: একাধিক শর্তে ডেটা ফিল্টার করা।
