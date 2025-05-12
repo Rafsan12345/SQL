@@ -259,14 +259,23 @@ CALL GetAllStudents();
 ..................................................................
 
 
+DELIMITER $$
+
+CREATE PROCEDURE GetAllStudentsByCity(IN input_city VARCHAR(100))
+BEGIN
+  SELECT * FROM Customers
+  WHERE city = input_city;
+END $$
+
+DELIMITER ;
 
 
 
 
 
+CALL GetAllStudents("Dhaka");
 
-
-
+.............................................................
 
 
 
