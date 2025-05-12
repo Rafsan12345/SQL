@@ -240,6 +240,34 @@ BEGIN
 END;
 //
 
+..........................................................
+DELIMITER $$
+
+CREATE PROCEDURE GetAllStudents()
+BEGIN
+  SELECT * FROM Customers;
+END $$
+
+DELIMITER ;
+
+
+
+
+
+CALL GetAllStudents();
+
+..................................................................
+
+
+
+
+
+
+
+
+
+
+
 
 
 #31 TRIGGERS
