@@ -186,13 +186,123 @@ CREATE TABLE classes (
   FOREIGN KEY (student_id) REFERENCES students(id)
 );
 
-
+..................................................................................................................
 #16 JOINS
 ব্যাখ্যা: একাধিক টেবিলের তথ্য একত্রে দেখানো।
 
 SELECT students.name, classes.class_name
 FROM students
 JOIN classes ON students.id = classes.student_id;
+
+
+
+
+🧩 টেবিল উদাহরণ
+ধরা যাক আমাদের কাছে নিচের দুটি টেবিল আছে:
+
+Employees টেবিল:
+emp_id	emp_name	dept_id
+1	Alice	10
+2	Bob	20
+3	Charlie	30
+4	David	NULL
+
+Departments টেবিল:
+dept_id	dept_name
+10	HR
+20	Engineering
+40	Marketing
+
+1. 🔗 INNER JOIN
+➡️ উভয় টেবিলেই মিল থাকা রেকর্ডগুলোকেই দেখায়।
+
+
+SELECT emp_name, dept_name
+FROM Employees
+INNER JOIN Departments
+ON Employees.dept_id = Departments.dept_id;
+📌 ফলাফল:
+
+emp_name	dept_name
+Alice	HR
+Bob	Engineering
+
+2. 🔗 LEFT JOIN (LEFT OUTER JOIN)
+➡️ Employees টেবিলের সব রেকর্ড দেখায়, আর মিল পাওয়া Departments থেকে।
+
+
+SELECT emp_name, dept_name
+FROM Employees
+LEFT JOIN Departments
+ON Employees.dept_id = Departments.dept_id;
+📌 ফলাফল:
+
+emp_name	dept_name
+Alice	HR
+Bob	Engineering
+Charlie	NULL
+David	NULL
+
+3. 🔗 RIGHT JOIN (RIGHT OUTER JOIN)
+➡️ Departments টেবিলের সব রেকর্ড দেখায়, আর মিল পাওয়া Employees থেকে।
+
+
+SELECT emp_name, dept_name
+FROM Employees
+RIGHT JOIN Departments
+ON Employees.dept_id = Departments.dept_id;
+📌 ফলাফল:
+
+emp_name	dept_name
+Alice	HR
+Bob	Engineering
+NULL	Marketing
+
+4. 🔗 FULL OUTER JOIN
+➡️ দুটি টেবিলের সব রেকর্ড দেখায়। যেখানে মিল নেই, সেখানে NULL।
+
+✅ কিছু ডাটাবেস (যেমন: PostgreSQL) সরাসরি FULL OUTER JOIN সাপোর্ট করে:
+
+SELECT emp_name, dept_name
+FROM Employees
+FULL OUTER JOIN Departments
+ON Employees.dept_id = Departments.dept_id;
+📌 ফলাফল:
+
+emp_name	dept_name
+Alice	HR
+Bob	Engineering
+Charlie	NULL
+David	NULL
+NULL	Marketing
+
+⛔ MySQL-এ সরাসরি FULL OUTER JOIN নেই, তবে UNION দিয়ে করা যায়:
+
+
+SELECT emp_name, dept_name
+FROM Employees
+LEFT JOIN Departments
+ON Employees.dept_id = Departments.dept_id
+
+UNION
+
+SELECT emp_name, dept_name
+FROM Employees
+RIGHT JOIN Departments
+ON Employees.dept_id = Departments.dept_id;
+
+
+>>>>>>>>>>>>>>>>>>>>সংক্ষেপে:
+JOIN Type	কি দেখায়
+INNER JOIN	দুই টেবিলেই মিল আছে এমন রেকর্ড
+LEFT JOIN	বাম (প্রথম) টেবিলের সব রেকর্ড + মিল থাকলে ডান টেবিল
+RIGHT JOIN	ডান (দ্বিতীয়) টেবিলের সব রেকর্ড + মিল থাকলে বাম টেবিল
+FULL OUTER JOIN	দুই টেবিলের সব রেকর্ড, মিল না থাকলে NULL
+
+.................................................................................................................
+
+
+
 
 
 #17 FUNCTIONS
