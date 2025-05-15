@@ -33,6 +33,8 @@ VALUES (170,'M','Dhaka',155,'Islam','M','01784032597')
 
 
 
+#ALTER ->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> DROP + ADD + MODIFY 
+
 
 
 
@@ -45,13 +47,62 @@ ALTER TABLE `student_data`
   DROP `Phone_no`;
 
 
+ALTER TABLE Students
+DROP 'Name',
+ADD 'Roll' INT, 
+MODIFY COLUMN age VARCHAR(10);
+
 
 ...........................................................................................
 
+
+
+-- একটি নতুন টেবিল তৈরি
+CREATE TABLE Students (
+    id INT PRIMARY KEY,
+    name VARCHAR(50),
+    age INT
+);
+
+-- ডেটা Insert
+INSERT INTO Students (id, name, age) VALUES (1, 'Hasib', 22);
+
+-- ডেটা Read
+SELECT * FROM Students;
+
+-- ডেটা Update
+UPDATE Students SET age = 23 WHERE id = 1;
+
+-- ডেটা Delete
+DELETE FROM Students WHERE id = 1;
+
+
+
+
+
+................................................................................................
 #6 SELECT
 ব্যাখ্যা: টেবিল থেকে ডেটা দেখা হয়।
 
 SELECT * FROM students;
+
+SELECT id, name, phn FROM students;
+
+//DISTINCT: শুধুমাত্র ইউনিক (অদ্বিতীয়) মানগুলো ফেরত দেয়, অর্থাৎ ডুপ্লিকেট বাদ দেয়।
+ 
+SELECT DISTINCT Country FROM Customers; 
+ 
+
+
+
+
+
+
+
+
+
+
+
 
 #7 UPDATE & DELETE
 ব্যাখ্যা:
