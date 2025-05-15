@@ -52,6 +52,8 @@ DROP 'Name',
 ADD 'Roll' INT, 
 MODIFY COLUMN age VARCHAR(10);
 
+// delete a table
+DROP TABLE Students;
 
 ...........................................................................................
 
