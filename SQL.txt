@@ -4,6 +4,31 @@ SELECT *FROM Customers WHERE age=31 AND country="USA";
 
 *FROM  ->>>>>>>>>>>>> Select column from Table 
 
+
+
+
+.......................................................................... COLUMN Based Operation 
+
+
+
+SELECT id, (value1 + value2 + value3) AS total_sum FROM sensordata;
+
+///////////////////////////////////////////////////////////////////////////////////////////
+SELECT 
+    id,
+    SUM(value1 + value2 + value3) AS total_sum
+FROM 
+    your_table
+GROUP BY 
+    id
+HAVING 
+    SUM(value1 + value2 + value3) > 50;
+
+........................................................................  COLUMN Based Operation 
+
+
+
+
 ##################################################################################
 
 #3 DATABASES
